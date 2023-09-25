@@ -1,0 +1,9 @@
+#ifndef __USER_H__
+#define __USER_H__
+
+#include "STD_TYPE.h"
+#include "admin.h"
+
+void print_patient_record(node *head);
+
+#endif __USER_H__

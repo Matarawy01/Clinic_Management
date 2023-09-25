@@ -1,0 +1,153 @@
+#include "admin.h"
+#include <string.h>
+u8 arr[5]={0};
+
+
+
+
+node *search_ID(node *head,u8 ID)
+{
+	while(head != NULL){
+		if(head->ID == ID)
+		{
+			return head;
+		}
+		head = head->next;
+	}
+	return NULL;
+}
+
+
+void add_new_patient(node **head_ptr)
+{
+	node *temp;
+	temp = (node*) malloc(sizeof(node));
+	printf("\nPlease Enter Your ID: ");
+	fflush(stdin);fflush(stdout);
+	scanf("%d",&(temp->ID));
+	if(search_ID(*head_ptr, (temp->ID)) == NULL)
+	{
+		temp->next = *head_ptr;
+		printf("Please Enter Your Name: ");
+		fflush(stdin);fflush(stdout);
+		scanf("%s",&(temp->name));
+		printf("Please Enter Your Age: ");
+		fflush(stdin);fflush(stdout);
+		scanf("%d",&(temp->age));
+		printf("Please Enter Your Gender if you are male send 'M' or female 'F': ");
+		fflush(stdin);fflush(stdout);
+		scanf("%c",&(temp->gender));
+		*head_ptr = temp;
+	}
+	else
+	{
+		printf("This ID is exist\n");
+	}
+}
+
+
+void edit_patient(node *head)
+{
+	u32 ID;
+	printf("Please enter your ID: ");
+	fflush(stdin);fflush(stdout);
+	scanf("%d",&ID);
+	head = search_ID(head,ID);
+	if(head == NULL)
+	{
+		printf("Incorrect ID\n");
+	}
+	else
+	{
+		printf("Please Enter Your Name: ");
+		fflush(stdin);fflush(stdout);
+		scanf("%s",&(head->name));
+		printf("Please Enter Your Age: ");
+		fflush(stdin);fflush(stdout);
+		scanf("%d",&(head->age));
+		printf("Please Enter Your Gender if you are male send 'M' or female 'F': ");
+     	fflush(stdin);fflush(stdout);
+		scanf("%c",&(head->gender));
+	}
+}
+
+
+void available_slot()
+{
+	if(arr[0] == NULL)
+		printf("From 2pm to 2:30pm enter '1'\n");
+	if(arr[1] == NULL)
+		printf("From 2:30pm to 3pm enter '2'\n");
+	if(arr[2] == NULL)
+		printf("From 3pm to 3:30pm enter '3'\n");
+	if(arr[3] == NULL)
+		printf("From 4pm to 4:30pm enter '4'\n");
+	if(arr[4] == NULL)
+		printf("From 4:30pm to 5pm enter '5'\n");
+}
+void reserve_slot(node *head)
+{
+	u32 time,ID;
+
+	printf("Enter your ID: ");
+	fflush(stdout);fflush(stdin);
+	scanf("%d",&ID);
+	head = search_ID(head,ID);
+	if(head != NULL)
+	{
+		printf("Enter the slot that you want to reserve\n\n");
+		available_slot();
+		fflush(stdin);fflush(stdout);
+		scanf("%d",&time);
+		if(time == 1)
+		{
+			arr[0]=ID;
+		}
+		else if(time == 2)
+		{
+			arr[1]=ID;
+		}
+		else if(time == 3)
+		{
+			arr[2]=ID;
+		}
+		else if(time == 4)
+		{
+			arr[3]=ID;
+		}
+		else if(time == 5)
+		{
+			arr[4]=ID;
+		}
+	}
+	else
+	{
+		printf("This ID is't Exist\n\n");
+	}
+}
+void cancel_resevation(node *head)
+{
+	u8 ID,i,flag=0;
+	printf("Enter your ID: ");
+	fflush(stdout);fflush(stdin);
+	scanf("%d",&ID);
+	if(search_ID(head,ID) != NULL)
+	{
+		for(i=0;i<5;i++)
+		{
+			if(arr[i] == ID)
+			{
+				flag=1;
+				arr[i] = 0;
+			}
+		}
+		if(flag == 0)
+		{
+			printf("This ID Has not reserve any slot yet\n");
+		}
+	}
+	else
+	{
+		printf("Wrong ID\n\n");
+	}
+}

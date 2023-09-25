@@ -1,0 +1,102 @@
+#include <stdio.h>
+#include "STD_TYPE.h"
+#include "admin.h"
+#include "user.h"
+node *head=NULL;
+int main()
+{
+	u32 choose1=0,choose2=0,choose3=0;
+	u32 tries=3;
+	u32 password;
+	label:printf("**********************************************************************************************************\n");
+	printf("************************************** Welcome To The Clinic System **************************************\n");
+	printf("**********************************************************************************************************\n");
+	printf("\nPlease choose between Admin mode and User mode\n\n");
+	printf("For Admin mode enter '1'\nFor User mode enter '2'\n");
+	fflush(stdin);fflush(stdout);
+	scanf("%d",&choose1);
+	if(choose1 == 1)
+	{
+
+		for(tries =3;tries>0;tries--)
+		{
+			printf("\nPlease Enter the Password: ");
+			fflush(stdin);fflush(stdout);
+			scanf("%d",&password);
+			printf("\n");
+			if(password == 1234)
+			{
+				printf("\n*****************************************************************************\n");
+				printf("************************** Welcome To Admin Mode ****************************\n");
+				printf("*****************************************************************************\n\n");
+				while(1)
+				{
+					printf("\n*****************************************************************************\n");
+					printf("If you want to add new patient '1'\nIf you want to edit patient data '2'\nIf Reserve a slot '3'\nIf you want to cancel reserved slot '4'\nIf you want to exit from Admin mode '5'\n");
+					fflush(stdin);fflush(stdout);
+					scanf("%d",&choose2);
+					printf("*****************************************************************************\n");
+					switch(choose2)
+					{
+					case 1 :
+					{
+						add_new_patient(&head);
+						break;
+					}
+					case 2:
+					{
+						edit_patient(head);
+						break;
+					}
+					case 3:
+					{
+						reserve_slot(head);
+						break;
+					}
+					case 4:
+					{
+						cancel_resevation(head);
+						break;
+					}
+					}
+					if(choose2 ==5)
+					{
+						goto label;
+					}
+				}
+				break;
+			}
+		}
+		if(tries == 0)
+		{
+			goto label;
+		}
+	}
+	else if(choose1 == 2)
+	{
+		while(1)
+		{
+			printf("\n*****************************************************************************\n");
+			printf("************************** Welcome To User Mode *****************************\n");
+			printf("*****************************************************************************\n\n");
+			printf("If you want to print patient data '1'\nIf you want to print the reserved data '2'\nIf you want to exist '3'\n");
+			fflush(stdin);fflush(stdout);
+			scanf("%d",&choose3);
+			printf("\n*****************************************************************************\n");
+			if(choose3 == 1)
+			{
+				print_patient_record(head);
+			}
+			else if(choose3 ==2)
+			{
+				view_reserved();
+			}
+			else if(choose3 == 3)
+			{
+				break;
+			}
+		}
+		goto label;
+	}
+
+}

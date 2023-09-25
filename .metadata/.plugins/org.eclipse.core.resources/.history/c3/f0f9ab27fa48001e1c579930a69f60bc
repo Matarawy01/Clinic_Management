@@ -1,0 +1,17 @@
+#include "STD_TYPE.h"
+#include "stdio.h"
+#include "stdlib.h"
+
+
+typedef struct {
+	u8 age;
+	u16 ID;
+	char gender;
+	char name[100];
+}patient;	
+
+void admin_mode();
+void add_new_patient();
+void edit_patient();
+void reserve_slot();
+void cancel_resevation();

@@ -1,0 +1,23 @@
+#ifndef __ADMIN_H__
+#define __ADMIN_H__
+#include "STD_TYPE.h"
+#include "stdio.h"
+#include "stdlib.h"
+
+
+typedef struct patient{
+	u8 ID;
+	u8 age;
+	u8 gender;
+	u8 name[50];
+	struct patient *next;
+}node;
+
+void admin_mode();
+node *search_ID(node *head,u8 ID);
+void add_new_patient(node **head_ptr);
+void edit_patient(node *head);
+void reserve_slot();
+void cancel_resevation();
+
+#endif __ADMIN_H__

@@ -1,0 +1,25 @@
+#include "user.h"
+#include "admin.h"
+#include <string.h>
+void print_patient_record(node *head)
+{
+	u8 ID,check=0;
+	if(head == '\0')
+	{
+		printf("The linked list is empty\n");
+	}
+	else
+	{
+		printf("Please Enter your ID: ");
+		fflush(stdin);fflush(stdout);
+		scanf("%d",&ID);
+		if(search_ID(head, ID) != NULL)
+		{
+			head = search_ID(head, ID);
+			printf("The name of patient: %s\n",head->name);
+			printf("The age of patient: %d\n",head->age);
+			printf("The gender of patient: %c\n",head->gender);
+			printf("The ID of patient: %d\n",head->ID);
+		}
+	}
+}

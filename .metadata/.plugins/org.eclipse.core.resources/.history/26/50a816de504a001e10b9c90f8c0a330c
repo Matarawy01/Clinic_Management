@@ -1,0 +1,5 @@
+#include "STD_TYPE.h"
+#include "stdio.h"
+#include "stdlib.h"
+
+void start_system(void);

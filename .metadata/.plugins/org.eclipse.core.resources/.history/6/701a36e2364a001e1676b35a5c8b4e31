@@ -1,0 +1,9 @@
+#include <stdio.h>
+#include "STD_TYPE.h"
+#include "start.h"
+#include "admin.h"
+#include "user.h"
+int main()
+{
+		start_system();
+}

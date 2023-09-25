@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include "STD_TYPE.h"
+#include "start.h"
+#include "admin.h"
+
+int main()
+{
+	printf("\n************************************** Welcome To The System **************************************\n");
+	u8 RetStart;
+
+	RetStart = start_system();
+	printf("Abdelrahman\n");
+	if(RetStart == 1)
+	{
+		printf("Ayat\n");
+		admin_mode();
+
+	}
+}

@@ -1,0 +1,39 @@
+#include "user.h"
+#include "admin.h"
+#include <string.h>
+extern u8 arr[5];
+void print_patient_record(node *head)
+{
+	u8 ID, check=0;
+	if(head == '\0')
+	{
+		printf("The linked list is empty\n");
+	}
+	else
+	{
+		printf("Please Enter your ID: ");
+		fflush(stdin);fflush(stdout);
+		scanf("%d",&ID);
+		if(search_ID(head, ID) != NULL)
+		{
+			head = search_ID(head, ID);
+			printf("The name of patient: %s\n",head->name);
+			printf("The age of patient: %d\n",head->age);
+			printf("The gender of patient: %c\n",head->gender);
+			printf("The ID of patient: %d\n",head->ID);
+		}
+	}
+}
+void view_reserved()
+{
+	if(arr[0] != NULL)
+		printf("From 2pm to 2:30pm enter '1'\n");
+	if(arr[1] != NULL)
+		printf("From 2:30pm to 3pm enter '2'\n");
+	if(arr[2] != NULL)
+		printf("From 3pm to 3:30pm enter '3'\n");
+	if(arr[3] != NULL)
+		printf("From 4pm to 4:30pm enter '4'\n");
+	if(arr[4] != NULL)
+		printf("From 4:30pm to 5pm enter '5'\n");
+}

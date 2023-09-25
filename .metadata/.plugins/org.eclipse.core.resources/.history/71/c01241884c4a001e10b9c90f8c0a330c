@@ -1,0 +1,33 @@
+#include "start.h"
+#include "admin.h"
+#include "user.h"
+
+node *head=NULL;
+void start_system(void)
+{
+	u8 flag=0,check1=0,check2=0;
+	printf("Admin or User\n");
+	fflush(stdin);fflush(stdout);
+	scanf("%d",&check1);
+	if(check1 == 1)
+	{
+		flag = admin_mode();
+		while(flag !='\0')
+		{
+			printf("add or edit\n");
+			fflush(stdin);fflush(stdout);
+			scanf("%d",&check2);
+			if(check2 == 1)
+			{
+				add_new_patient(&head);
+			}
+			else if(check2 == 2)
+				edit_patient(head);
+			else
+				flag=0;
+		}
+	}
+	else
+		print_patient_record(head);
+
+}

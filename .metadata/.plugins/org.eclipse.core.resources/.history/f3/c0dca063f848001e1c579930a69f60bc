@@ -1,0 +1,10 @@
+#include <stdio.h>
+#include "STD_TYPE.h"
+#include "start.h"
+#include "admin.h"
+
+int main()
+{
+	printf("\n************************************** Welcome To The System **************************************\n");
+
+}
